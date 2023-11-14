@@ -16,7 +16,17 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # 내 PC 파일 안에 저장된 API_KEY 변수를 가져옴
+import environ
+import os
 
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False)
+)
+
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+
+API_KEY = env('API_KEY')
 
 
 # Quick-start development settings - unsuitable for production
