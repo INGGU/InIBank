@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import TimeDepositProduct, TimeDepositOption, SavingsProduct, SavingsOption
+from .models import TimeDepositProduct, TimeDepositOption, SavingsProduct, SavingsOption, MortgageLoansProduct, MortgageLoansOption
 
 
 class TimeDepositProductSerializer(serializers.ModelSerializer):
@@ -24,5 +24,18 @@ class SavingsProductSerializer(serializers.ModelSerializer):
 class SavingsOptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = SavingsOption
+        exclude = ('product',)
+        read_only_fields = ('product',)
+        
+
+class MortgageLoansProductSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MortgageLoansProduct
+        fields = '__all__'
+
+
+class MortgageLoansOptionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MortgageLoansOption
         exclude = ('product',)
         read_only_fields = ('product',)
